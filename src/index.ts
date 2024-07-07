@@ -23,7 +23,7 @@ export interface TypedCssModulesOptions {
   hashLength?: number
 }
 
-export function typedCssModulesVite({ rootDir = 'src', typeRootDir = 'type', format = 'camelCase', hashLength = 6 }: TypedCssModulesOptions = {}): Plugin {
+export default function typedCssModulesVite({ rootDir = 'src', typeRootDir = 'type', format = 'camelCase', hashLength = 6 }: TypedCssModulesOptions = {}): Plugin {
   function postcssPlugin(): PostcssPlugin {
     return {
       postcssPlugin: 'postcss-typed-css-modules',

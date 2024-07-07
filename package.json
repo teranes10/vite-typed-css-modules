@@ -1,5 +1,5 @@
 {
-  "name": "vite-typed-css-modules",
+  "name": "@teranes/vite-typed-css-modules",
   "version": "1.0.0",
   "description": "Creates TypeScript definition files from CSS Modules",
   "main": "dist/index.mjs",
