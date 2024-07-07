@@ -1,6 +1,6 @@
 {
   "name": "@teranes/vite-typed-css-modules",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Creates TypeScript definition files from CSS Modules",
   "main": "dist/index.mjs",
   "module": "./dist/index.js",
@@ -13,7 +13,12 @@
     "patch": "git add . && git commit -m \"Automated build commit\" && npm version patch && git push",
     "release": "npm run build && npm run patch && npm publish --access public"
   },
-  "keywords": ["css-modules","typescript", "vite", "postcss"],
+  "keywords": [
+    "css-modules",
+    "typescript",
+    "vite",
+    "postcss"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/teranes10/vite-typed-css-modules.git"
