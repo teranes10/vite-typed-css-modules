@@ -23,7 +23,7 @@ export interface TypedCssModulesOptions {
   hashLength?: number
 }
 
-export default function typedCssModulesVite({ rootDir = 'src', typeRootDir = 'type', format = 'camelCase', hashLength = 6 }: TypedCssModulesOptions = {}): Plugin {
+export default function typedCssModulesVite({ rootDir = 'src', typeRootDir, format = 'camelCase', hashLength = 6 }: TypedCssModulesOptions = {}): Plugin {
   function postcssPlugin(): PostcssPlugin {
     return {
       postcssPlugin: 'postcss-typed-css-modules',
@@ -74,7 +74,11 @@ export default function typedCssModulesVite({ rootDir = 'src', typeRootDir = 'ty
   }
 }
 
-function getDeclarationFilePath(filePath: string, { rootDir, typeRootDir }: { rootDir: string, typeRootDir: string }) {
+function getDeclarationFilePath(filePath: string, { rootDir, typeRootDir }: { rootDir: string, typeRootDir?: string }) {
+  if (!typeRootDir) {
+    return filePath + '.d.ts'
+  }
+
   const path = filePath.replace(resolvePath(rootDir), '')
   const typeFilePath = resolvePath(typeRootDir, path)
   return typeFilePath + '.d.ts'
