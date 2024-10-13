@@ -9,4 +9,13 @@ export default defineConfig({
   minify: true,
   splitting: true,
   clean: true,
+  outExtension({ format }) {
+    return {
+      js: format === 'esm'
+        ? '.mjs'
+        : format === 'cjs'
+          ? '.cjs'
+          : '.js',
+    }
+  },
 })
