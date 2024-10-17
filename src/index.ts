@@ -20,10 +20,11 @@ export interface TypedCssModulesOptions {
   rootDir?: string
   typeRootDir?: string
   format?: keyof typeof formattingOptions
-  hashLength?: number
+  hashLength?: number,
+  scopeBehaviour?: 'local' | 'global'
 }
 
-export default function typedCssModulesVite({ rootDir = 'src', typeRootDir, format = 'camelCase', hashLength = 6 }: TypedCssModulesOptions = {}): Plugin {
+export default function typedCssModulesVite({ rootDir = 'src', typeRootDir, format = 'camelCase', hashLength = 6, scopeBehaviour = 'local' }: TypedCssModulesOptions = {}): Plugin {
   function postcssPlugin(): PostcssPlugin {
     return {
       postcssPlugin: 'postcss-typed-css-modules',
@@ -62,6 +63,7 @@ export default function typedCssModulesVite({ rootDir = 'src', typeRootDir, form
       return {
         css: {
           modules: {
+            scopeBehaviour,
             localsConvention: formattingOptions[format].viteLocalsConvention,
             generateScopedName: process.env.NODE_ENV === 'production' ? `[hash:base64:${hashLength}]` : `[local]_[hash:base64:${hashLength}]`,
           },
